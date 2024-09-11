@@ -1,0 +1,9 @@
+baseURL: https://vanshaj.xyz
+languageCode: en-us
+theme: ["PaperMod"]
+title: Vanshaj Saxena
+
+params:
+  env: development
+  author: Vanshaj Saxena
+  defaultTheme: auto
