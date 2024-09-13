@@ -3,75 +3,13 @@ languages:
   en:
     disabled: false
 theme: ["PaperMod"]
-title: Top Title
+title: "@vanshaj.xyz"
 
 taxonomies:
   topic: topics
   tag: tags
   category: categories
 
-params:
-  env: development
-  title: params:title
-  description: This is site description
-  author: ["Author Name"]
-  defaultTheme: auto
-  languageAltTitle: English
-  showCodeCopyButtons: true
-  disableSpecial1stPost: true
-  hideSummary: false
-  showtoc: true
-  tocopen: false
-  useHugotoc: false
-  showBreadCrumbs: true
-  showPostNavLinks: false
-  showSharebuttons: false
-  showWordCount: false
-  shareButtons: [linkedin, x]
-  ShowRssButtonInSectionTermList: true
-  comments: true
-  hideFooter: false
-  CanonicalLinkText: www.vanshaj.xyz
-  ShowCanonicalLink: true
-  displayFullLangName: true
-  keywords: ["sitekeyword1", "sitekeyword2"]
-  label.text: labelText
-  cover:
-    - responsiveImages: true
-  # for search
-  fuseOpts:
-    isCaseSensitive: false
-    shouldSort: true
-    location: 0
-    distance: 1000
-    threshold: 0.4
-    minMatchCharLength: 0
-    limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
-    keys: ["title", "permalink", "summary", "content"] ##  can be less but not more than shown in list
-
-  # ShowSharebuttons: true
-  # homeInfoParams:
-  #   Title: params:homeInfoParams:Title
-  #   Content: params:homeInfoParams:Content
-
-  profileMode:
-    enabled: true
-    title: "profileMode:title" # optional default will be site title
-    subtitle: "profileMode:subtitle"
-    imageUrl: "profileMode:imageUrl" # optional
-    imageTitle: "profileMode:imageTitle" # optional
-    imageWidth: 120 # custom size
-    imageHeight: 120 # custom size
-    buttons:
-      - name: Archive
-        url: "/archives"
-      - name: Github
-        url: "https://github.com/"
-  socialIcons:
-    - name: "GitHub"
-      url: "https://github.com/VanshajSaxena"
-    - name: "LinkedIn"
-      url: "https://linkedin.com"
 enableSearch: true
 
 outputs:

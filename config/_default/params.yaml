@@ -1,0 +1,64 @@
+env: development
+title: params:title
+description: This is site description
+author: ["Vanshaj Saxena"]
+
+homeInfoParams:
+  Title: Hey, I'm Vanshaj Saxena
+  Content: "A Student and a Developer currently learining Java"
+
+profileMode:
+  enabled: false
+  title: "profileMode:title" # optional default will be site title
+  subtitle: "profileMode:subtitle"
+  imageUrl: "profileMode:imageUrl" # optional
+  imageTitle: "profileMode:imageTitle" # optional
+  imageWidth: 120 # custom size
+  imageHeight: 120 # custom size
+  buttons:
+    - name: Archive
+      url: "/archives"
+    - name: Github
+      url: "https://github.com/VanshajSaxena"
+socialIcons:
+  - name: "GitHub"
+    url: "https://github.com/VanshajSaxena"
+  - name: "LinkedIn"
+    url: "https://linkedin.com"
+  - name: "Email"
+    url: "mailto:vs110405@outlook.com"
+  # - name: "Lemmy"
+  #   url: "https://linkedin.com"
+
+defaultTheme: auto
+languageAltTitle: English
+showCodeCopyButtons: true
+disableSpecial1stPost: true
+hideSummary: false
+showtoc: true
+tocopen: false
+useHugotoc: false
+showBreadCrumbs: true
+showPostNavLinks: false
+showSharebuttons: false
+showWordCount: false
+shareButtons: [linkedin, x]
+ShowRssButtonInSectionTermList: true
+comments: true
+hideFooter: true
+ShowCanonicalLink: true
+displayFullLangName: true
+keywords: ["sitekeyword1", "sitekeyword2"]
+label.text: labelText
+cover:
+  - responsiveImages: true
+# for search
+fuseOpts:
+  isCaseSensitive: false
+  shouldSort: true
+  location: 0
+  distance: 1000
+  threshold: 0.4
+  minMatchCharLength: 0
+  limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+  keys: ["title", "permalink", "summary", "content"] ##  can be less but not more than shown in list
