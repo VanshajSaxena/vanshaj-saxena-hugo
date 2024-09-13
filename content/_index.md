@@ -1,7 +1,7 @@
 ---
-title: 'This is a title at /_index.md'
-date: 2024-09-13T00:39:37+05:30
+menus: main
+title: 'Home'
+date: 2024-09-13T22:58:11+05:30
 draft: true
+weight: 2
 ---
-
-## content/_index.md
