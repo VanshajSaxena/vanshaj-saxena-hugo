@@ -8,23 +8,23 @@ homeInfoParams:
   Content: "A Student and A Developer currently learining Java."
 
 profileMode:
-  enabled: false
-  title: "profileMode:title" # optional default will be site title
-  subtitle: "profileMode:subtitle"
-  imageUrl: "profileMode:imageUrl" # optional
-  imageTitle: "profileMode:imageTitle" # optional
+  enabled: true
+  title: "Vanshaj Saxena" # optional default will be site title
+  subtitle: "Java | Linux | DevOps"
+  imageUrl: "/PSX_20240914_225243.jpg"
+  imageTitle: "Vanshaj Saxena" # optional
   imageWidth: 120 # custom size
   imageHeight: 120 # custom size
   buttons:
-    - name: Archive
-      url: "/archives"
-    - name: Github
-      url: "https://github.com/VanshajSaxena"
+    - name: Projects
+      url: "/projects"
+    - name: About
+      url: "https://vanshaj.xyz/about"
 socialIcons:
   - name: "GitHub"
     url: "https://github.com/VanshajSaxena"
   - name: "LinkedIn"
-    url: "https://linkedin.com"
+    url: "https://linkedin.com/in/vanshajsaxena2024"
   - name: "Email"
     url: "mailto:vs110405@outlook.com"
   # - name: "Lemmy"
