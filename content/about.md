@@ -2,7 +2,7 @@
 menu: main
 title: 'About'
 date: 2024-09-14T04:09:14+05:30
-draft: true
+draft: false
 weight: 10
 layout: single
 showtoc: false
