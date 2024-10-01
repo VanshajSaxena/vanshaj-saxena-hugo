@@ -4,11 +4,11 @@ description: This is site description
 author: ["Vanshaj Saxena"]
 
 homeInfoParams:
-  Title: Hey, I'm Vanshaj Saxena
-  Content: "A Student and A Developer currently learining Java."
+  Title: Vanshaj Saxena
+  Content: "Java | Linux"
 
 profileMode:
-  enabled: true
+  enabled: false
   title: "Vanshaj Saxena" # optional default will be site title
   subtitle: "Java | Linux | DevOps"
   imageUrl: "/PSX_20240914_225243.jpg"
@@ -20,6 +20,7 @@ profileMode:
       url: "/projects"
     - name: About
       url: "https://vanshaj.xyz/about"
+
 socialIcons:
   - name: "GitHub"
     url: "https://github.com/VanshajSaxena"
