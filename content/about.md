@@ -9,7 +9,7 @@ showtoc: false
 topics: [Java, Linux]
 showBreadcrumb: false
 ---
-A Developer, Administrator, and GNU/Linux geek. I am passionate about software, development tools and open-source constantly exploring their boundaries and my own. I learn through books, documentation and articles.
+A Developer, Administrator, and GNU/Linux geek. I am passionate about software, development tools and open-source constantly exploring their boundaries and my own. I learn through documentation, books and articles.
 
 I like approaching to problem with all non-conventional ways of solution you might _not_ think of.
 

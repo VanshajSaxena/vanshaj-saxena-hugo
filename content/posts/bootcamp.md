@@ -1,6 +1,6 @@
 ---
 title: 'Bootcamp'
-ate: 2024-02-02T03:36:02+05:30
+date: 2024-01-25T03:36:02+05:30
 draft: false
 showtoc: false
 ---

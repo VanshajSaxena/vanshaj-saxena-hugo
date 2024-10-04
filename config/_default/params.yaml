@@ -1,11 +1,11 @@
 env: development
-title: params:title
+title: "@vanshaj.xyz"
 description: A site by Vanshaj Saxena
 author: ["Vanshaj Saxena"]
 
 homeInfoParams:
   Title: Vanshaj Saxena
-  #Content: "Java | Linux"
+  Content: A Developer, and a geek. I am passionate about [Read more...]({{< relref "about.md" >}})
 
 profileMode:
   enabled: false
