@@ -1,16 +1,16 @@
 env: development
 title: params:title
-description: This is site description
+description: A site by Vanshaj Saxena
 author: ["Vanshaj Saxena"]
 
 homeInfoParams:
   Title: Vanshaj Saxena
-  Content: "Java | Linux"
+  #Content: "Java | Linux"
 
 profileMode:
   enabled: false
   title: "Vanshaj Saxena" # optional default will be site title
-  subtitle: "Java | Linux | DevOps"
+  subtitle: "Java | Linux"
   imageUrl: "/PSX_20240914_225243.jpg"
   imageTitle: "Vanshaj Saxena" # optional
   imageWidth: 120 # custom size
@@ -28,8 +28,6 @@ socialIcons:
     url: "https://linkedin.com/in/vanshajsaxena2024"
   - name: "Email"
     url: "mailto:vs110405@outlook.com"
-  # - name: "Lemmy"
-  #   url: "https://linkedin.com"
 
 defaultTheme: auto
 languageAltTitle: English
@@ -49,17 +47,17 @@ comments: true
 hideFooter: true
 ShowCanonicalLink: true
 displayFullLangName: true
-keywords: ["sitekeyword1", "sitekeyword2"]
-label.text: labelText
+# keywords: ["sitekeyword1", "sitekeyword2"]
+# label.text: labelText
 cover:
   - responsiveImages: true
-# for search
-fuseOpts:
-  isCaseSensitive: false
-  shouldSort: true
-  location: 0
-  distance: 1000
-  threshold: 0.4
-  minMatchCharLength: 0
-  limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
-  keys: ["title", "permalink", "summary", "content"] ##  can be less but not more than shown in list
+# # for search
+# fuseOpts:
+#   isCaseSensitive: false
+#   shouldSort: true
+#   location: 0
+#   distance: 1000
+#   threshold: 0.4
+#   minMatchCharLength: 0
+#   limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
+#   keys: ["title", "permalink", "summary", "content"] ##  can be less but not more than shown in list

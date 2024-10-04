@@ -1,7 +1,7 @@
 ---
 menus: main
-title: 'Projects'
+title: 'Blog'
 date: 2024-09-15T00:08:48+05:30
 draft: false
-weight: 4
+weight: 3
 ---
