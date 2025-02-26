@@ -51,6 +51,8 @@ displayFullLangName: true
 # label.text: labelText
 cover:
   - responsiveImages: true
+mainSections:
+  - posts # only show blog posts on the Home Info page
 # # for search
 # fuseOpts:
 #   isCaseSensitive: false

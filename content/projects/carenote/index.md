@@ -14,8 +14,9 @@ with a problem that has some meaning and is relevant to at least some people.
 Then develop the actual solution that can solve *this real problem in the real
 world*.
 
-Before this I had always wrote small programs that only served me, mainly in configuring my development experience in Neovim, which is a small project in
-itself maintained by me.
+Before this I had always wrote small programs that only served me, mainly in
+configuring my development experience in [Neovim]({{<relref
+"projects/neovim">}}), which is a small project in itself maintained by me.
 
 Here are some of the screenshots of the **prototype** which I with my teammates
 designed.
@@ -27,8 +28,8 @@ designed.
 ---
 
 I could not provide the screenshots of the actual application as I do not own a
-Mac or an iPhone and the few screenshots I took that time have been lost
-unfortunately.
+Mac or an iPhone (so I could build locally) and the few screenshots I took that
+time have been lost unfortunately.
 
 But you can have a look at the source code if you want to dive deep,
 [here](https://github.com/VanshajSaxena/CareNote).

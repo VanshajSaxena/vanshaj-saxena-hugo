@@ -1,0 +1,17 @@
+{{/* Get parameters from the shortcode */}}
+{{ $src := .Get "src" }}
+{{ $width := default "640" (.Get "width") }}
+{{ $height := default "360" (.Get "height") }}
+{{ $class := default "video-container" (.Get "class") }}
+
+{{/* Look for the video in the same bundle as the page */}}
+{{ with .Page.Resources.GetMatch $src }}
+  <div class="{{ $class }}">
+    <video controls width="{{ $width }}" height="{{ $height }}">
+      <source src="{{ .RelPermalink }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+{{ else }}
+  <p>Video not found: {{ $src }}</p>
+{{ end }}
