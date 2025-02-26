@@ -1,0 +1,13 @@
+{{ $image := .Page.Resources.Get (.Get "src") }}
+{{ if $image }}
+    {{ $resized := $image.Resize "250x" }}
+    <div style="text-align: center;">
+        <img src="{{ $resized.RelPermalink }}" alt="{{ .Get "alt" }}" style="max-width: 100%; height: auto; display: block; margin: auto;">
+    </div>
+{{ else }}
+    <div style="text-align: center;">
+        <img src="{{ .Get "src" }}" alt="{{ .Get "alt" }}" style="max-width: 100%; height: auto; display: block; margin: auto;">
+    </div>
+{{ end }}
+
+
