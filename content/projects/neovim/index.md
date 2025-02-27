@@ -67,6 +67,6 @@ through which I can extend further and save some time for other projects.
 Maintaining a Neovim configurable is sometimes so time taking that you get to
 have very little time for other projects that you work upon.
 
-Here is the [source code](https://github.com/VanshajSaxena/nvim) for anyone interested in diving more deep into the
-Neovim Ecosystem.
+Here is the [source code](https://github.com/VanshajSaxena/nvim) for anyone
+interested in diving more deep into the Neovim Ecosystem.
 
