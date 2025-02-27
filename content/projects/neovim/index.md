@@ -58,9 +58,6 @@ nvim
 │       ├── overrides.lua
 │       ├── tools.lua
 │       └── ui.lua
-├── spell
-│   ├── en.utf-8.add
-│   └── en.utf-8.add.spl
 └── stylua.toml
 ```
 This has evolved so much since I first started.
