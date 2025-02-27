@@ -17,7 +17,7 @@ I like approaching to problem with all non-conventional ways of solution you
 might _not_ think of.
 
 ## Contact Me
-Connect with me on [LinkedIn](https://linkedin.com/in/vanshajsaxena2024) or via
+Connect with me on [LinkedIn](https://linkedin.com/in/vanshajxyz) or via
 email at [vs110405@outlook.com](mailto:vs110405@outlook.com).
 
 
