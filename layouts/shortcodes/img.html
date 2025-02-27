@@ -1,13 +1,16 @@
+{{ $size := .Get "size" | default "600x" }}
 {{ $image := .Page.Resources.Get (.Get "src") }}
 {{ if $image }}
-    {{ $resized := $image.Resize "600x" }}
+    {{ $resized := $image.Resize $size }}
     <div style="text-align: center;">
-        <img src="{{ $resized.RelPermalink }}" alt="{{ .Get "alt" }}" style="max-width: 100%; height: auto; display: block; margin: auto;">
+        <a href="{{ $image.RelPermalink }}" target="_blank">
+            <img src="{{ $resized.RelPermalink }}" alt="{{ .Get "alt" }}" style="max-width: 100%; height: auto; display: block; margin: auto;">
+        </a>
     </div>
 {{ else }}
     <div style="text-align: center;">
-        <img src="{{ .Get "src" }}" alt="{{ .Get "alt" }}" style="max-width: 100%; height: auto; display: block; margin: auto;">
+        <a href="{{ .Get "src" }}" target="_blank">
+            <img src="{{ .Get "src" }}" alt="{{ .Get "alt" }}" style="max-width: 100%; height: auto; display: block; margin: auto;">
+        </a>
     </div>
 {{ end }}
-
-
