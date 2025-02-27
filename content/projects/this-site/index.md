@@ -64,13 +64,14 @@ vanshaj@NIXOS ~/code/websites/vanshaj-saxena (master+*) $ exa --tree
 ├── i18n
 ├── layouts
 │   └── shortcodes
-├── public # This is the output directory for the static site
+├── public # This is a separate git submodule that provides the frontend for the github pages static site
 ├── resources
 ├── static # static diretory for files that are simply copied over to public/
 └── themes # themes
 ```
 
 This project has taught me a number of things about web development tools and
-frameworks, although I do not development for the web, I am mostly do backend
-development and I mostly program in Java.
+frameworks, although I do not development for the web, I am mostly do [backend
+development]({{< relref "projects/backend-and-java.md">}}) (I am still learning) and I mostly program in Java.
 
+[Source code](https://github.com/VanshajSaxena/vanshaj-saxena-hugo)
