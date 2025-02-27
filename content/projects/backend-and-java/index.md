@@ -39,9 +39,9 @@ previously.
 
 - [Problems](https://github.com/VanshajSaxena/Problems)
 
-This repository has over 180 problems that I had solved during my preparation.
-Unfortunately, I no more update the repository and the problem set that I
-solved is more that 250 now, as I really find it hard to maintain it
+This repository has over **180 problems** that I had solved during my
+preparation. Unfortunately, I no more update the repository and the problem set
+that I solved is more that **250** now, as I really find it hard to maintain it
 and I have found better tools for it.
 
 ---
