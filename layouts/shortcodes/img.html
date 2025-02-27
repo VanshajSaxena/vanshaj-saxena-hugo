@@ -1,6 +1,6 @@
 {{ $image := .Page.Resources.Get (.Get "src") }}
 {{ if $image }}
-    {{ $resized := $image.Resize "250x" }}
+    {{ $resized := $image.Resize "600x" }}
     <div style="text-align: center;">
         <img src="{{ $resized.RelPermalink }}" alt="{{ .Get "alt" }}" style="max-width: 100%; height: auto; display: block; margin: auto;">
     </div>

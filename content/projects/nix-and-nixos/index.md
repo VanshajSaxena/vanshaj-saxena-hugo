@@ -41,25 +41,97 @@ Nix installations.
 
 Below is an example of a really simple Nix Flake:
 ``` nix
+#  flake.nix
 {
-  description = "A Simple Nix Flake";
+  description = "A Simple Nix Flake"; # Human readable string that describes the flake
   outputs = { self }: {
     packages.x86_64-linux.hello = with import <nixpkgs> {}; hello;
   };
 }
 ```
+This entire file is a Nix expression that evaluates to an attribute set.
+Looking closely you'll find the expression in itself is an attribute set.
 
-Nix Flakes are still and experimental feature in Nix Package Manager, but they
-are slowly moving towards stability.
+Here `outputs` is a function that takes an attribute set as an argument, we are
+only using one parameter here, `self`, which is a reference to the current flake.
+
+`packages.x86_64-linux.hello` is just a reference to the package `hello`
+through the `x86_64-linux` key contained in the `packages` attribute set.
 
 ---
 ### NixOS
 
 I faced this problem of traditionally managing the state (packages) of my Linux
-System imperatively. This caused conflicts and inconsistencies in my
+System imperatively. This always caused conflicts and inconsistencies in my
 environment in various ways. Also I never knew what state of my system is
 leading to an issue. It is very hard to pin point it, when you build you system
 imperatively rather than declaratively.
+
+NixOS allows you to **interact with your operating system programmatically**, more
+specifically you can declare your packages and configurations and **build your
+system like any other software project that you build**.
+
+``` nix
+# /etc/nixos/flake.nix
+{
+  description = "NixOS System Flake";
+  # Input to the flake
+  inputs = {
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+  };
+  # Flake output
+  outputs =
+    {
+    nixpkgs-stable,
+    nixpkgs-unstable,
+    ...
+    }:
+    {
+      # `NIXOS` is hostname here, can be anything
+      nixosConfigurations.NIXOS = nixpkgs-unstable.lib.nixosSystem rec {
+        # Architecture
+        system = "x86_64-linux";
+        # Used to provide special arguments to the flake output
+        specialArgs = {
+          nixos-stable = import nixpkgs-stable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        };
+        # Nix module to be included in the flake
+        modules = [
+          ./configuration.nix
+        ];
+      };
+    };
+}
+```
+As you see, this is how we define a flake that helps to define our dependencies
+declaratively, in any project. For this system flake, the dependencies are the
+packages that we require in our environment.
+
+``` nix
+# /etc/nixos/home.nix
+{ inputs-from-flake, ... }:
+{
+  home.username = "vanshaj";
+  home.homeDirectory = "/home/vanshaj";
+  home.packages = with inputs-from-flake; [
+    # Define your dependencies
+  ];
+  # basic configuration of git
+  programs.git = {
+    enable = true;
+    userName = "Vanshaj Saxena";
+    userEmail = "vs110405@outlook.com";
+  };
+  home.stateVersion = "24.05";
+  # Let home Manager install and manage itself.
+  programs.home-manager.enable = true;
+}
+```
+You can further extend your flake with the module system provided with Nix.
 
 ``` shell
 vanshaj@NIXOS /etc/nixos $ lt
@@ -71,7 +143,23 @@ lrwxrwxrwx     - root 26 Jul  2024  ├── hardware-configuration.nix -> /hom
 lrwxrwxrwx     - root 26 Jul  2024  └── home.nix -> /home/vanshaj/nixos/home.nix
 ```
 
+This makes debugging and maintaining your project much easier.
 Now, whenever there is a problem in the system you could literally `git bisect`
 your system configuration like a traditional software.
 
-Here is the [source code](https://github.com/VanshajSaxena/nixos-config) for anyone interested in nerding out.
+Not only Nix allows to you build declaratively, it guarantees **reproducibility
+and easy rollbacks**.
+
+---
+
+{{<img src="Systemdboot-Screenshot.jpg">}}
+
+
+---
+
+This **immutability** and **reproducibility** is the cause I use Nix for my projects
+and my system.
+
+
+[Source code](https://github.com/VanshajSaxena/nixos-config)
+
