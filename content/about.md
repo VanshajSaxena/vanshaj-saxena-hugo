@@ -18,7 +18,7 @@ might _not_ think of.
 
 ## Contact Me
 Connect with me on [LinkedIn](https://linkedin.com/in/vanshajxyz) or via
-email at [vs110405@outlook.com](mailto:vs110405@outlook.com).
+email at [vanshajsaxena2005@gmail.com](mailto:vanshajsaxena2005@gmail.com).
 
 
 
