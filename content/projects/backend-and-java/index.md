@@ -17,7 +17,8 @@ There are a number of small projects I have worked upon while I was learning:
 - [Dabbled with AOP](https://github.com/VanshajSaxena/springBootAOP)
 
 These projects have greatly contributed to my fundamental understanding of
-computer science and software engineering.
+computer science and software engineering which are foundational to backend
+programming.
 
 These projects helped me get a grasp on principles like **Inversion of Control
 (IoC)** and **Dependency Injection (DI)**.
