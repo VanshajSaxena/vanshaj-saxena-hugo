@@ -1,16 +1,16 @@
 ---
-title: 'This Site'
+title: "This Site"
 draft: false
 showtoc: false
-weight: 96
+weight: 101
 ---
+
 ---
 
 This site is built with [Hugo](https://gohugo.io/).
 
 This allowed me to showcase my projects and my thoughts to you. The site has a
-really simple hierarchical structure, supporting [blogs]({{< relref "posts"
->}}) and project posts.
+really simple hierarchical structure, supporting [blogs]({{< relref "posts" >}}) and project posts.
 
 ---
 
@@ -20,12 +20,11 @@ Writing a simple blog post like this involves simply creating a
 [markdown](https://www.markdownguide.org/) file with specific archetype in the
 posts directory. Or you can use Hugo binary to create a new post.
 
-``` shell
+```shell
 vanshaj@NIXOS ~/ (master+*) $ hugo new content /path/to/post
 ```
 
 Then simply writing the post is all you need to do.
-
 
 {{<img src="post-Screenshot.png" size="700x">}}
 
@@ -33,7 +32,7 @@ Then simply writing the post is all you need to do.
 
 ### Structure
 
-``` shell
+```shell
 vanshaj@NIXOS ~/code/websites/vanshaj-saxena (master+*) $ exa --tree
 .
 ├── archetypes
