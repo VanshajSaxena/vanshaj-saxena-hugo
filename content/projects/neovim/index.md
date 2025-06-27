@@ -1,11 +1,12 @@
 ---
-title: 'Neovim'
+title: "Neovim"
 #date: 2024-02-10T03:36:02+05:30
 draft: false
 showtoc: false
-weight: 97
+weight: 98
 ---
----
+
+> [**Source Code**](https://github.com/VanshajSaxena/nvim)
 
 [**Neovim**](https://neovim.io/) is a hyperextensible modal text editor based
 on Vim.
@@ -20,20 +21,32 @@ among others. It is configured using a simple language called
 
 > Lua is a powerful, efficient, lightweight, embeddable scripting language. It
 > supports procedural programming, object-oriented programming, functional
-> programming, data-driven programming, and data description. 
+> programming, data-driven programming, and data description.
 
 I started to learn Lua in my free time and became quite familiar with it very
 quickly. The language is so simple that it has only a single data structure,
-*tables*. **A single data structure to rule them all**.
+_tables_. **A single data structure to rule them all**.
 
 Since I first started using Neovim I maintained my own Neovim configuration,
 building it from scratch and rewriting it, several times. This was in itself a
 spiritual process in my programming journey.
 
-Here's the structure of my Neovim configuration:
+---
+
+### Motivation
+
+Neovim puts you in a place where you control every aspect of your development
+process and environment, moreover it gives you the opportunity to learn about
+the tools and dependencies essential for your project. This is the primary
+reason I use Neovim as my main text editor.
+
+---
 
 ### Structure
-``` shell
+
+Here's the structure of my Neovim configuration:
+
+```shell
 nvim
 ├── hyperfine.out
 ├── init.lua
@@ -60,13 +73,10 @@ nvim
 │       └── ui.lua
 └── stylua.toml
 ```
+
 This has evolved so much since I first started.
 
 I now have moved to using Neovim Distributions as they provide structured API
 through which I can extend further and save some time for other projects.
 Maintaining a Neovim configurable is sometimes so time taking that you get to
 have very little time for other projects that you work upon.
-
-Here is the [source code](https://github.com/VanshajSaxena/nvim) for anyone
-interested in diving more deep into the Neovim Ecosystem.
-

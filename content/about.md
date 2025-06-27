@@ -1,6 +1,6 @@
 ---
 menu: main
-title: 'About'
+title: "About"
 date: 2024-09-14T04:09:14+05:30
 draft: false
 weight: 10
@@ -9,18 +9,17 @@ showtoc: false
 topics: [Java, Linux]
 showBreadcrumb: false
 ---
+
 A Developer, Administrator, and GNU/Linux geek. I am passionate about software,
 development tools and open-source constantly exploring their boundaries and my
-own. I learn through documentation, books and articles.
+own. I learn through documentation, talks, books and articles.
 
 I like approaching to problem with all non-conventional ways of solution you
 might _not_ think of.
 
+---
+
 ## Contact Me
-Connect with me on [LinkedIn](https://linkedin.com/in/vanshajxyz) or via
-email at [vanshajsaxena2005@gmail.com](mailto:vanshajsaxena2005@gmail.com).
 
-
-
-
-
+Connect with me on [LinkedIn](https://linkedin.com/in/vanshajxyz) or via email
+at [vanshajsaxena2005@gmail.com](mailto:vanshajsaxena2005@gmail.com).

@@ -1,11 +1,14 @@
 ---
-title: 'Fable'
+title: "Fable"
 #date: 2024-02-10T03:36:02+05:30
 draft: false
 showtoc: false
-weight: 99
+weight: 95
 ---
----
+
+> [**User Service source code**](https://github.com/VanshajSaxena/LMS_User)
+
+> [**Admin Service source code**](https://github.com/VanshajSaxena/LMS_Admin_Librarian)
 
 Fable is a Software as a Service (SaaS) Library Management System (LMS)
 Software.
@@ -23,6 +26,7 @@ Here are the videos of the actual developed applications.
 {{< video src="FableForAdminsandLibrarians.mp4" width="600" height="450" class="align-center" >}}
 
 ---
+
 ## Development Overview
 
 The Fable project is subdivided into two application projects, one is for the
@@ -31,10 +35,9 @@ administrators. I worked as the **backend architect** and **developer**.
 
 ### User LMS
 
-[Source code](https://github.com/VanshajSaxena/LMS_User)
-
 #### Layout
-``` shell
+
+```shell
 LMS_User
 ├── Assets.xcassets # Assets folder
 ├── CONTRIBUTING.md # Contributing Guide
@@ -55,14 +58,13 @@ LMS_User
 │       └── Contents.json
 └── README.md # Readme file
 ```
+
 The application follows a simple MVVM architecture to structure the source
 code.
 
 ### Admin Librarian LMS
 
-[Source code](https://github.com/VanshajSaxena/LMS_Admin_Librarian)
-
-``` shell
+```shell
 LMS_Admin_Librarian
 ├── CONTRIBUTING.md
 ├── GoogleService-Info.plist
@@ -94,4 +96,3 @@ programming, I learned through the process of developing and sharing.
 I learned a lot from the project as this was my first project in which I worked
 with a team of 10 members in an agile-based development process. I also had the
 responsibility of the Scrum Master for the team.
-

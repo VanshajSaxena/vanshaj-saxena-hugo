@@ -5,8 +5,6 @@ showtoc: false
 weight: 94
 ---
 
----
-
 Java is the first language I learnt because of its verbosity and acceptance.
 
 There are a number of small projects I have worked upon while I was learning:
@@ -15,13 +13,11 @@ There are a number of small projects I have worked upon while I was learning:
 - [Web Server](https://github.com/VanshajSaxena/webServerThreadPooled)
 - [Proxies](https://github.com/VanshajSaxena/springBootProxies)
 - [Dabbled with AOP](https://github.com/VanshajSaxena/springBootAOP)
+- [Auction Hub](https://github.com/VanshajSaxena/auction-system)
 
 These projects have greatly contributed to my fundamental understanding of
-computer science and software engineering which are foundational to backend
-programming.
-
-These projects helped me get a grasp on principles like **Inversion of Control
-(IoC)** and **Dependency Injection (DI)**.
+computer science and software engineering which are foundational for writing
+backend services.
 
 ---
 

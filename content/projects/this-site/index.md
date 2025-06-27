@@ -5,12 +5,13 @@ showtoc: false
 weight: 101
 ---
 
----
+> [**Source Code**](https://github.com/VanshajSaxena/vanshaj-saxena-hugo)
 
 This site is built with [Hugo](https://gohugo.io/).
 
 This allowed me to showcase my projects and my thoughts to you. The site has a
-really simple hierarchical structure, supporting [blogs]({{< relref "posts" >}}) and project posts.
+really simple hierarchical structure, supporting [blogs]({{< relref "posts" >}})
+and project posts.
 
 ---
 
@@ -25,8 +26,6 @@ vanshaj@NIXOS ~/ (master+*) $ hugo new content /path/to/post
 ```
 
 Then simply writing the post is all you need to do.
-
-{{<img src="post-Screenshot.png" size="700x">}}
 
 ---
 
@@ -63,14 +62,8 @@ vanshaj@NIXOS ~/code/websites/vanshaj-saxena (master+*) $ exa --tree
 ├── i18n
 ├── layouts
 │   └── shortcodes
-├── public # This is a separate git submodule that provides the frontend for the github pages static site
+├── public # public site
 ├── resources
 ├── static # static diretory for files that are simply copied over to public/
 └── themes # themes
 ```
-
-This project has taught me a number of things about web development tools and
-frameworks, although I do not development for the web, I am mostly do [backend
-development]({{< relref "projects/backend-and-java.md">}}) (I am still learning) and I mostly program in Java.
-
-[Source code](https://github.com/VanshajSaxena/vanshaj-saxena-hugo)

@@ -3,10 +3,11 @@ title: 'Nix and NixOS'
 #date: 2024-02-10T03:36:02+05:30
 draft: false
 showtoc: false
-weight: 98
+weight: 96
 showtoc: true
 ---
----
+
+> [**Source Code**](https://github.com/VanshajSaxena/nixos-config)
 
 [NixOS](https://nixos.org/) is a GNU/Linux distribution that focuses on
 reproducibility, declarative configuration, and robust package management.
@@ -25,7 +26,9 @@ way. NixOS does this with the use of its **purely functional package manager**,
 **Nix**.
 
 ---
+
 ### Nix
+
 Nix is a powerful package manager for Linux and other Unix systems that makes
 package management reliable and reproducible.
 
@@ -40,15 +43,17 @@ dependencies are version-pinned in a lock file, improving reproducibility of
 Nix installations.
 
 Below is an example of a really simple Nix Flake:
-``` nix
+
+```nix
 #  flake.nix
 {
-  description = "A Simple Nix Flake"; # Human readable string that describes the flake
+  description = "A Simple Nix Flake"; # A simple description for the flake
   outputs = { self }: {
     packages.x86_64-linux.hello = with import <nixpkgs> {}; hello;
   };
 }
 ```
+
 This entire file is a Nix expression that evaluates to an attribute set.
 Looking closely you'll find the expression in itself is an attribute set.
 
@@ -59,19 +64,20 @@ only using one parameter here, `self`, which is a reference to the current flake
 through the `x86_64-linux` key contained in the `packages` attribute set.
 
 ---
+
 ### NixOS
 
 I faced this problem of traditionally managing the state (packages) of my Linux
 System imperatively. This always caused conflicts and inconsistencies in my
 environment in various ways. Also I never knew what state of my system is
-leading to an issue. It is very hard to pin point it, when you build you system
-imperatively rather than declaratively.
+leading to an issue. It is very hard to pin point it, when you build your
+system imperatively rather than declaratively.
 
 NixOS allows you to **interact with your operating system programmatically**, more
 specifically you can declare your packages and configurations and **build your
 system like any other software project that you build**.
 
-``` nix
+```nix
 # /etc/nixos/flake.nix
 {
   description = "NixOS System Flake";
@@ -107,11 +113,12 @@ system like any other software project that you build**.
     };
 }
 ```
+
 As you see, this is how we define a flake that helps to define our dependencies
 declaratively, in any project. For this system flake, the dependencies are the
 packages that we require in our environment.
 
-``` nix
+```nix
 # /etc/nixos/home.nix
 { inputs-from-flake, ... }:
 {
@@ -131,16 +138,16 @@ packages that we require in our environment.
   programs.home-manager.enable = true;
 }
 ```
+
 You can further extend your flake with the module system provided with Nix.
 
-``` shell
-vanshaj@NIXOS /etc/nixos $ lt
-drwxr-xr-x     - root 26 Jul  2024  .
-lrwxrwxrwx     - root 26 Jul  2024  ├── configuration.nix -> /home/vanshaj/nixos/configuration.nix
-lrwxrwxrwx     - root 26 Jul  2024  ├── flake.lock -> /home/vanshaj/nixos/flake.lock
-lrwxrwxrwx     - root 26 Jul  2024  ├── flake.nix -> /home/vanshaj/nixos/flake.nix
-lrwxrwxrwx     - root 26 Jul  2024  ├── hardware-configuration.nix -> /home/vanshaj/nixos/hardware-configuration.nix
-lrwxrwxrwx     - root 26 Jul  2024  └── home.nix -> /home/vanshaj/nixos/home.nix
+```shell
+/etc/nixos
+├── configuration.nix -> /home/vanshaj/nixos/configuration.nix
+├── flake.lock -> /home/vanshaj/nixos/flake.lock
+├── flake.nix -> /home/vanshaj/nixos/flake.nix
+├── hardware-configuration.nix -> /home/vanshaj/nixos/hardware-configuration.nix
+└── home.nix -> /home/vanshaj/nixos/home.nix
 ```
 
 This makes debugging and maintaining your project much easier.
@@ -152,14 +159,5 @@ and easy rollbacks**.
 
 ---
 
-{{<img src="Systemdboot-Screenshot.jpg">}}
-
-
----
-
 This **immutability** and **reproducibility** is the cause I use Nix for my projects
 and my system.
-
-
-[Source code](https://github.com/VanshajSaxena/nixos-config)
-

@@ -1,10 +1,9 @@
 ---
-title: 'Neorg and Notes'
+title: "Neorg and Notes"
 #date: 2024-02-10T03:36:02+05:30
 draft: false
 showtoc: false
-weight: 95
----
+weight: 100
 ---
 
 [Neorg](https://github.com/nvim-neorg/neorg) is a note-taking software used to
@@ -30,5 +29,3 @@ My notes can be found [here](https://github.com/VanshajSaxena/notes).
 These encompasses all the concepts that I don't
 want to forget later. So I document them structurally. Neorg and Neovim both
 gives tools to efficiently search and query through these notes.
-
-

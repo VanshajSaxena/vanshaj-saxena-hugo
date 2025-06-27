@@ -1,10 +1,13 @@
 ---
-title: 'Got Selected'
+title: "Got Selected"
 date: 2024-02-05T03:27:56+05:30
 draft: false
 ---
+
 ---
+
 ## The Selection
+
 On the day of January 29, 2024 I was selected for a semester wide program
 powered by **Infosys** and **Apple** for iOS development.
 
@@ -16,6 +19,7 @@ following for the past 2 years. What was about to come proved even challenging
 than what I had anticipated.
 
 ## The Program
+
 Earlier in the Bootcamp, I teamed up with a friend of mine as it was only
 allowed to have two members in a team. But this time it was different. We were
 instructed to form a team of four members, each with a different skill set.

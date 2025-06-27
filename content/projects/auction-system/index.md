@@ -5,6 +5,8 @@ showtoc: false
 weight: 93
 ---
 
+> [**Source Code**](https://github.com/VanshajSaxena/auction-system)
+
 **Auction Hub** is a backend service that is designed to serve a system of online
 auctions, basically the buying, selling, and bidding of auction items in real
 time, with a comprehensive focus on security of the application and its scalability.
@@ -32,14 +34,14 @@ auction-system/
 │   │   │       └── auction/
 │   │   │           └── system/     # Main application package
 │   │   │               ├── config/         # Spring Security configuration classes
-│   │   │               ├── controllers/    # API Controllers (delegates to generated interfaces)
-│   │   │               ├── entities/       # JPA entities
+│   │   │               ├── controller/     # API Controllers (delegates to generated interfaces)
+│   │   │               ├── entity/         # JPA entities
 │   │   │               ├── exception/      # Custom exception handling
-│   │   │               ├── filters/        # Request filters (e.g. JWT authentication filter)
-│   │   │               ├── mappers/        # MapStruct mappers
-│   │   │               ├── repositories/   # Spring Data JPA repositories
+│   │   │               ├── filter/         # Request filters (e.g. JWT authentication filter)
+│   │   │               ├── mapper/         # MapStruct mappers
+│   │   │               ├── repository/     # Spring Data JPA repositories
 │   │   │               ├── security/       # Security related components
-│   │   │               ├── services/       # Business logic interfaces
+│   │   │               ├── service/        # Business logic interfaces
 │   │   │               │   └── impl/       # Interface implementations
 │   │   │               └── AuctionSystemApplication.java # Spring Boot main class
 │   │   └── resources/
@@ -53,16 +55,13 @@ auction-system/
 │           └── com/
 │               └── auction/
 │                   └── system/
-│                       ├── services/
+│                       ├── service/
 │                       │   └── impl/       # Service related tests
-│                       └── testutils/      # Test utility classes
+│                       └── testutil/       # Test utility classes
 ├── mvnw                                    # Maven wrapper executable (Linux/MacOS)
 ├── mvnw.cmd                                # Maven wrapper executable (Windows)
 └── pom.xml                                 # Maven Project Object Model
 ```
-
-The [source-code](https://github.com/VanshajSaxena/auction-system) can be found
-on my GitHub Profile.
 
 ---
 
@@ -84,6 +83,8 @@ endpoint needs to be added, the API description file can be updated to reflect
 that and the server stubs will be generated with
 [openapi-generator](https://github.com/OpenAPITools/openapi-generator) during
 the `generate-source` phase of Maven `default` lifecycle.
+
+---
 
 ## Security
 
@@ -131,5 +132,110 @@ security:
 ```
 
 To have a deeper look at the security scheme have a look at the
-`SecurityConfig.java` and `OAuth2SecurityConfig` in the
-`com.auction.system.config` package.
+[SecurityConfig.java](https://github.com/VanshajSaxena/auction-system/blob/master/src/main/java/com/auction/system/config/SecurityConfig.java)
+and
+[OAuth2SecurityConfig](https://github.com/VanshajSaxena/auction-system/blob/master/src/main/java/com/auction/system/config/OAuth2SecurityConfig.java)
+in the
+[com.auction.system.config](https://github.com/VanshajSaxena/auction-system/tree/master/src/main/java/com/auction/system/config)
+package.
+
+## Database and ORM
+
+The application uses an in-memory H2 database for development, but it can be
+configured to use any database of the choice (e.g. MySQL).
+
+```yaml
+# Example configuration for a local MySQL server
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/auction_system
+    username: test
+    password: password
+```
+
+Along with this the proper JDBC driver for the particular database needs to be
+on the class path for the application to connect to the data source
+successfully.
+
+```xml
+<!-- in project object model (pom.xml) -->
+  <dependencies>
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+```
+
+The actual ORM (Object Relational Mapping) framework used in the application is
+[Hibernate](https://hibernate.org/), along with [Spring Data
+JPA](https://spring.io/projects/spring-data-jpa) to reduce effort of directly
+interacting with Hibernate interface such as `Session` and `EntityManager`.
+
+```java
+// Entity class
+@Entity
+@Table(name = "users", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "username"),
+    @UniqueConstraint(columnNames = "email")
+})
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
+public class UserEntity { // User entity from the application source code
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @Column(nullable = false)
+  private String firstName;
+
+  @Column(nullable = false)
+  private String lastName;
+
+  @Column(nullable = false)
+  private String username;
+
+  @Column(nullable = false)
+
+  // ...more fields
+}
+```
+
+Using Spring Data JPA it is now easy to generate SQL just by defining a
+`UserRepository` that extends a `JpaRepository`.
+
+```java
+// Repository interface
+@Repository
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+
+  Optional<UserEntity> findByUsername(String username);
+
+  Optional<UserEntity> findByEmail(String email);
+
+}
+```
+
+Now the repository can be used like this:
+
+```java
+// Service class
+@Service
+@RequiredArgsConstructor
+public class DefaultUserService implements UserService {
+
+  // Inject using constructor injection
+  private final UserRepository userRepository;
+
+  private final UserMapper userMapper;
+
+  private final PasswordEncoder passwordEncoder;
+
+  //...methods
+}
+```
