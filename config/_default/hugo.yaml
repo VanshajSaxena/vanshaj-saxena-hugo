@@ -1,10 +1,10 @@
-baseURL: https://vanshaj.xyz/
+baseURL: https://vanshajsaxena.com
 languageCode: en-us
 languages:
   en:
     disabled: false
 theme: ["PaperMod"]
-title: "@vanshaj.xyz" # site title displayed at the top of home page
+title: "root@vanshajsaxena" # site title displayed at the top of home page
 
 taxonomies:
   topic: topics
