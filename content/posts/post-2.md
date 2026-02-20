@@ -14,3 +14,11 @@ Wanted to share about the progress I have made on the project I am working on si
 - There has been an addition of a new screen to show what you previously printed and the status of those print jobs.
 
 For the people who are interested, I have also written a blog describing a high level
+
+## Differentiators
+
+- Visual page selection
+- Per-page color selection
+- Image editing
+- Automated file bundling
+- Order tracking
