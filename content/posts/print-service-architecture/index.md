@@ -19,9 +19,36 @@ I envisioned a simple service, that does just this:
 
 {{< inline-svg src="scan-select-print.svg" >}}
 
-I started my research and found that there are some apps trying to solve the same issue, but I didn't like any of their implementations some were hardly accessible or were too convoluted to use. I wanted something simple, that can be used by anyone (simplicity) and anywhere (accessibility).
+I started my research and found that there are some apps trying to solve the same issue, but I didn't like any of the implementations some were hardly accessible or were too convoluted to use. I wanted something simple, that can be used by anyone (simplicity) and anywhere (accessibility).
 
 ## Design
+
+Before I could design the system architecture, I needed to clearly define the requirements of the system.
+
+### Requirements
+
+I needed three systems that harmoniously integrates into a single product. These three systems were:
+
+| System              | Role          | Responsibilities                                                               |
+| ------------------- | ------------- | ------------------------------------------------------------------------------ |
+| Client Application  | User Facing   | Submission of print jobs, selection of print settings, order tracking, payment |
+| Vendor Application  | Vendor Facing | Printing and fulfillment of print jobs                                         |
+| Backend Application | Orchestration | Business logic, system coordination, and data flow management                  |
+
+These are some functional and non-functional requirements that I identified for the system:
+
+#### Functional Requirements
+
+- Users should be able to submit print jobs remotely from anywhere.
+- Users should be able to upload and manage multiple documents in a single order.
+- Users should be able to see the real-time availability of the printers and their proximity.
+- Users should be able to track the status of their print order in real time.
+
+#### Non-Functional Requirements
+
+- The documents should be kept private and should be automatically deleted after printing respecting user's privacy.
+- The system should withstand high traffic even during peak hours (e.g., before exams).
+- The system should be cost-efficient to operate and maintain.
 
 {{< inline-svg src="print-service-system-design.svg" >}}
 
