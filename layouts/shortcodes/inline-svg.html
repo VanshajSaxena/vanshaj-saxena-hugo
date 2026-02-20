@@ -1,0 +1,7 @@
+{{- $file := .Get "src" -}} {{- $class := .Get "class" | default "svg-inline"
+-}} {{- $svg := .Page.Resources.GetMatch $file -}}
+
+<div class="{{ $class }}">
+  {{- with $svg -}} {{ .Content | safeHTML }} {{- else -}} {{- printf "" $file
+  .Page.File.Path | safeHTML -}} {{- end -}}
+</div>

@@ -1,0 +1,2 @@
+{{ $path := .Get "src" }} {{ with resources.Get $path }} {{ .Content | safeHTML
+}} {{ end }}

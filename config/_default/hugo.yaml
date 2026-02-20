@@ -4,7 +4,7 @@ languages:
   en:
     disabled: false
 theme: ["PaperMod"]
-title: "root@vanshajsaxena" # site title displayed at the top of home page
+title: "hey@vanshajsaxena"
 
 taxonomies:
   topic: topics

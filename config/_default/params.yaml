@@ -1,15 +1,15 @@
 env: development
 title: "Vanshaj Saxena"
-description: A site by Vanshaj Saxena.
+description: A public diary by Vanshaj Saxena.
 author: ["Vanshaj Saxena"]
 
 homeInfoParams:
   Title: Vanshaj Saxena
-  Content: A Developer, and a geek. I am passionate about [Read more...]({{< relref "about.md" >}})
+  Content: A Backend, Frontend and UI/UX developer who builds software that [Read more...]({{< relref "about.md" >}})
 
 profileMode:
   enabled: false
-  title: "Vanshaj Saxena" # optional default will be site title
+  title: "Vanshaj Saxena"
   subtitle: "Java | Linux"
   imageUrl: "/PSX_20240914_225243.jpg"
   imageTitle: "Vanshaj Saxena" # optional
@@ -25,9 +25,9 @@ socialIcons:
   - name: "GitHub"
     url: "https://github.com/VanshajSaxena"
   - name: "LinkedIn"
-    url: "https://linkedin.com/in/vanshajxyz"
+    url: "https://www.linkedin.com/in/vanshajsaxenaxyz/"
   - name: "Email"
-    url: "mailto:vanshajsaxena2005@gmail.com"
+    url: "mailto:hey@vanshajsaxena.com"
 
 defaultTheme: auto
 languageAltTitle: English

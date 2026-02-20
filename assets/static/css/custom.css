@@ -1,0 +1,17 @@
+.svg-inline svg {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  margin: 0 auto;
+}
+
+.svg-inline svg * {
+  stroke: currentColor !important;
+}
+
+.svg-inline svg text,
+.svg-inline svg .fill-current {
+  fill: currentColor !important;
+  stroke: none !important;
+}
