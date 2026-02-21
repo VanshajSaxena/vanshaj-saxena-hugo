@@ -54,15 +54,58 @@ Below is the system architecture I designed to meet the above requirements:
 
 {{< inline-svg src="ps-system-design.svg" >}}
 
-This architecture satisfies the current requirements while being scalable for the future. If the need arises, we can introduce a high-speed caching layer or decompose the system into microservices as the system expands.
+This architecture satisfies the current requirements while being scalable for the future. If the need arise, we can introduce a high-speed caching layer or decompose the system into microservices as the system expands.
 
 ## Development Process
 
-### Backend Application
+Now, that our architecture is ready, the dirty work starts, we now dive into code and implement the system in a series of steps.
+I chose the following two languages for the development:
 
-### Client Application
+| Languege   | Scope                                                 | Rationale                                                                            |
+| ---------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| TypeScript | Backend, Client App, Vendor App                       | Known for it's safety and it's powerful type system.                                 |
+| C#         | Printing Layer, Windows Print Spooler API integration | We will use this to create a printing layer that talks to Windows Print Spooler API. |
 
-### Vendor Application
+### Initialization
+
+To scaffold the application codebases I skimmed through some high-quality open-source codebases to get an idea of their structure and the practices they follow.
+
+Unfortunately, the modern web development is a scattered mess. You need different tooling for everything and you need to know the tools and dependencies you require. Nevertheless, I settled upon these:
+
+| Tool               | Role                                                         |
+| ------------------ | ------------------------------------------------------------ |
+| Yarn v4 (Berry)    | Package Manager that we will be using.                       |
+| Vite (with Rollup) | The build tool/bundler to package and minify our code.       |
+| Nest CLI           | For NestJS, they have their own CLI to scaffold/orchestrate. |
+
+#### NestJS
+
+Following instruction on the [NestJS](https://nestjs.com/) website, I had my very first controller method ready.
+
+```ts
+import { Controller, Get } from "@nestjs/common";
+import { AppService } from "./app.service";
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
+}
+```
+
+#### React and Electron
+
+I will writing a separate post on how I initialized these, these were a behemoth to get right (especially the Electron project) with the settings and dependencies I wanted.
+
+### Tools
+
+### Dependencies and Libraries
+
+### Workflow
 
 ## Deployment
 
