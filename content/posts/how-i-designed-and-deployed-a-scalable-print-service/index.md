@@ -101,9 +101,24 @@ export class AppController {
 
 I will writing a separate post on how I initialized these, these were a behemoth to get right (especially the Electron project) with the settings and dependencies I wanted.
 
-### Tools
-
 ### Dependencies and Libraries
+
+I identified these dependencies that we will need to implement the bare architecture:
+
+| Dependencies                    | Rationale                                                                                                                   |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `@aws-sdk/client-s3`            | We need this client to generate Pre-Signed URLs used by both our frontends.                                                 |
+| `@aws-sdk/s3-request-presigner` | This gives us `getSignedUrl` helper that receives our client.                                                               |
+| `pg`                            | This is the non-blocking PostgreSQL client that creates and maintains a pool of connections to the database.                |
+| `typeorm`                       | A very advanced ORM inspired by the OG ORMs like `Hibernate`, `Doctrine` and `Entity Framework`.                            |
+| `@nestjs/*`                     | Nest specific dependencies what NestJS automatically installs during scaffolding, like `@nestjs/core` and `@nestjs/common`. |
+
+With just these dependencies installed, we can easily deploy a working prototype. But in any serious project, we need a few more dependencies to increase the development speed and elevate the DX.
+
+| Dependencies                            | Rationale                                                                                                                                        |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `class-transformer` & `class-validator` | Instead of manually validating and transforming our DTOs we simply declare what we need.                                                         |
+| `nanoid`                                | A tiny, secure, URL-friendly, unique string ID generator, we will use this to generate human-friendly identifiers, with entropy matching UUIDv4. |
 
 ### Workflow
 
