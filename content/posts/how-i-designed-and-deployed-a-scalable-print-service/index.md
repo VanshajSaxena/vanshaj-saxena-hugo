@@ -50,9 +50,19 @@ These are some functional and non-functional requirements that I identified for 
 - The system should withstand high traffic even during peak hours (e.g., before exams).
 - The system should be cost-efficient to operate and maintain.
 
-{{< inline-svg src="print-service-system-design.svg" >}}
+Below is the system architecture I designed to meet the above requirements:
 
-## Development
+{{< inline-svg src="ps-system-design.svg" >}}
+
+This architecture satisfies the current requirements while being scalable for the future. If the need arises, we can introduce a high-speed caching layer or decompose the system into microservices as the system expands.
+
+## Development Process
+
+### Backend Application
+
+### Client Application
+
+### Vendor Application
 
 ## Deployment
 
