@@ -398,6 +398,8 @@ And, run:
 $ docker run --env-file .env.development printit-cloud
 ```
 
+With this, the docker image can easily be used to run the application on any cloud provider.
+
 ## Conclusion
 
 This is yet to complete and by far perfect. I aim to improve this gradually as the requirements of the system becomes more clear and the system expands. I will also be discussing the architecture of the two other applications we left in upcoming future posts.
