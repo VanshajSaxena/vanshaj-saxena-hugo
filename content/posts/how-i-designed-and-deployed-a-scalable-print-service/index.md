@@ -346,7 +346,7 @@ You might have noticed, I don't use an IDE and only use the tools I need.
 
 ## Deployment
 
-Before we deploy our application on the cloud we will first containerize our application using **Docker** to have a consistent runtime environment everytime we run our application. This reduces surprises due to the differences in the environment our application will run.
+Before we deploy our application on the cloud we will first containerize our application using **Docker** to have a consistent runtime environment everytime we run our application. This reduces surprises due to the differences in the environment our application will run in.
 
 Here, I am using the **node:22-bookwork-slim** which keeps the our container image lightweight.
 
@@ -398,4 +398,6 @@ And, run:
 $ docker run --env-file .env.development printit-cloud
 ```
 
-## Future
+## Conclusion
+
+This is yet to complete and by far perfect. I aim to improve this gradually as the requirements of the system becomes more clear and the system expands. I will also be discussing the architecture of the two other applications we left in upcoming future posts.
