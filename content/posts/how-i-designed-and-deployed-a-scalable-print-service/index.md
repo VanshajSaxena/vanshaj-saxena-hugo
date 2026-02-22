@@ -346,4 +346,56 @@ You might have noticed, I don't use an IDE and only use the tools I need.
 
 ## Deployment
 
+Before we deploy our application on the cloud we will first containerize our application using **Docker** to have a consistent runtime environment everytime we run our application. This reduces surprises due to the differences in the environment our application will run.
+
+Here, I am using the **node:22-bookwork-slim** which keeps the our container image lightweight.
+
+```dockerfile
+FROM node:22-bookworm-slim AS builder
+
+WORKDIR /app
+
+RUN corepack enable
+
+COPY package.json yarn.lock ./
+COPY .yarn .yarn
+COPY .yarnrc.yml ./
+
+RUN yarn install --immutable
+
+COPY . .
+
+RUN yarn build
+
+FROM node:22-bookworm-slim
+
+WORKDIR /app
+
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/yarn.lock ./
+COPY --from=builder /app/.yarn .yarn
+COPY --from=builder /app/.yarnrc.yml ./
+
+RUN corepack enable \
+  && yarn install --immutable \
+  && yarn cache clean --all
+
+EXPOSE 8080
+
+CMD ["node", "dist/main"]
+```
+
+Now, we can build:
+
+```sh
+$ docker build -t printit-cloud .
+```
+
+And, run:
+
+```sh
+$ docker run --env-file .env.development printit-cloud
+```
+
 ## Future
