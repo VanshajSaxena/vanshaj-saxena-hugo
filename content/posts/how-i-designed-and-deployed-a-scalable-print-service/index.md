@@ -99,7 +99,7 @@ export class AppController {
 
 #### React and Electron
 
-I will writing a separate post on how I initialized these, these were a behemoth to get right (especially the Electron project) with the settings and dependencies I wanted.
+I will be writing a separate post on how I initialized these, these were a behemoth to get right (especially the Electron project) with the settings and dependencies I wanted.
 
 ### Dependencies and Libraries
 
@@ -120,7 +120,229 @@ With just these dependencies installed, we can easily deploy a working prototype
 | `class-transformer` & `class-validator` | Instead of manually validating and transforming our DTOs we simply declare what we need.                                                         |
 | `nanoid`                                | A tiny, secure, URL-friendly, unique string ID generator, we will use this to generate human-friendly identifiers, with entropy matching UUIDv4. |
 
-### Workflow
+### Development Flow
+
+The development of a system like this can be broken down into few quintessential steps:
+
+#### NestJS
+
+##### Designing Database Schemas
+
+- Defining the entities the system will deal with, for a printing system these will typically be (**job**, **document**, **printer**, etc.).
+- This includes defining any relationships between them (the cardinality and the direction of relationships).
+
+<details>
+  <summary><strong>Click to show a code example</strong></summary>
+
+```ts
+import { Job } from "src/job/entities/job.entity";
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
+import { DocumentStatus } from "../enum/document-status.enum";
+
+@Entity()
+export class Document {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ length: 255 })
+  filename: string;
+
+  @Column()
+  key: string;
+
+  @Column({ type: "varchar", length: 255 })
+  contentType: string;
+
+  @Column("enum", { enum: DocumentStatus, default: DocumentStatus.CREATED })
+  status: DocumentStatus;
+
+  @OneToMany(() => Job, (job) => job.document)
+  jobs: Job[];
+
+  @CreateDateColumn({ type: "timestamptz" })
+  createdAt: Date;
+
+  @UpdateDateColumn({ type: "timestamptz" })
+  updatedAt: Date;
+
+  @DeleteDateColumn({ type: "timestamptz" })
+  deletedAt: Date;
+}
+```
+
+</details>
+
+##### Designing Controllers
+
+- To let the Client and the Vendor Applications talk to our service we need to expose our entities as resources through REST endpoints.
+- We create controllers for each resource that define the contract of our API and inject services that handles the exact business logic.
+
+<details>
+  <summary><strong>Click to show a code example</strong></summary>
+
+```ts
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+} from "@nestjs/common";
+import { DocumentService } from "./document.service";
+import { CreateDocumentBatchRequestDto } from "./dto/create-document-batch-request.dto";
+import { CreateDocumentBatchResponseDto } from "./dto/create-document-batch-response.dto";
+import { UpdateDocumentRequestDto } from "./dto/update-document.dto";
+
+@Controller({ path: "documents", version: "1" })
+export class DocumentController {
+  constructor(private readonly documentService: DocumentService) {}
+
+  @Post()
+  async create(
+    @Body() createDocumentBatchDto: CreateDocumentBatchRequestDto,
+  ): Promise<CreateDocumentBatchResponseDto> {
+    return this.documentService.create(createDocumentBatchDto);
+  }
+
+  @Get()
+  async findAll() {
+    return this.documentService.findAll();
+  }
+
+  @Get(":id")
+  async findOne(@Param("id", ParseIntPipe) id: number) {
+    return this.documentService.findOne(id);
+  }
+
+  @Patch(":id")
+  async update(
+    @Param("id", ParseIntPipe) id: number,
+    @Body() updateDocumentRequestDto: UpdateDocumentRequestDto,
+  ) {
+    return this.documentService.update(id, updateDocumentRequestDto);
+  }
+
+  @Delete(":id")
+  async remove(@Param("id", ParseIntPipe) id: number) {
+    return this.documentService.remove(id);
+  }
+}
+```
+
+</details>
+
+##### Defining DTOs (Data Transfer Objects)
+
+- DTOs help separate the presentation layer from the business layer.
+- This is where our `class-validator` dependency comes handy. We can define the exact rules the DTOs has to validate against before it even touches our controller.
+
+<details>
+  <summary><strong>Click to show a code example</strong></summary>
+
+```ts
+import {
+  ArrayMinSize,
+  IsArray,
+  IsNotEmpty,
+  ValidateNested,
+} from "class-validator";
+import { CreateDocumentRequestDto } from "./create-document-request.dto";
+
+export class CreateDocumentBatchRequestDto {
+  @IsNotEmpty()
+  @IsArray()
+  @ArrayMinSize(1)
+  @ValidateNested({ each: true })
+  documents: CreateDocumentRequestDto[];
+}
+```
+
+</details>
+
+##### Building Services
+
+- Services are responsible for defining and enforcing business rules.
+- A typical service (or provider in NestJS terminology) needs to inject a TypeORM repository and perform actions on the entity object through the interface exposed by those repositories using data received from the DTOs.
+
+<details>
+  <summary><strong>Click to show a code example</strong></summary>
+
+```ts
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { ApplicationLogger } from "src/logger/application-logger.service";
+import { Repository } from "typeorm";
+import { CreateDocumentBatchRequestDto } from "./dto/create-document-batch-request.dto";
+import { CreateDocumentBatchResponseDto } from "./dto/create-document-batch-response.dto";
+import { CreateDocumentResponseDto } from "./dto/create-document-response.dto";
+import { Document } from "./entities/document.entity";
+
+@Injectable()
+export class DocumentService {
+  constructor(
+    @InjectRepository(Document)
+    private documentRepository: Repository<Document>,
+    private logger: ApplicationLogger,
+  ) {
+    this.logger.setContext(DocumentService.name);
+  }
+
+  async create(createDocumentDto: CreateDocumentBatchRequestDto) {
+    const draftIdMap = new Map<string, string>();
+    const newDocuments = createDocumentDto.documents.map((document) => {
+      const documentkey = this.getDocumentKey(document);
+      const newDocument = this.documentRepository.create(document);
+      newDocument.key = documentkey;
+      draftIdMap.set(newDocument.key, document.draftId);
+      return newDocument;
+    });
+    const saved = await this.documentRepository.save(newDocuments);
+    const documents = saved.map((savedDocument) => {
+      const draftId = draftIdMap.get(savedDocument.key);
+      if (!draftId) {
+        this.logger.error(
+          "Document creation failed due to in-memory mapping failure",
+        );
+        throw new InternalServerErrorException(
+          `Mapping failed for key: ${savedDocument.key}`,
+        );
+      }
+      return new CreateDocumentResponseDto({ ...savedDocument, draftId });
+    });
+    return new CreateDocumentBatchResponseDto({ documents });
+  }
+}
+```
+
+</details>
+
+#### React and Electron
+
+I realized this is already getting so long, I will be creating a separate posts on how I created the React and Electron application.
+
+### Tools
+
+Here are some tools that I use daily during development that are worth mentioning, these incredibly hastens the process of development for me.
+
+| Tool                                      | Description                                                    |
+| ----------------------------------------- | -------------------------------------------------------------- |
+| `git` + `lazygit`                         | `lazygit` is a git interface for the TUI.                      |
+| `fd`                                      | Incredibly fast file search.                                   |
+| `rg` (ripgrep)                            | An incredibly fast text search tool, a replacement for `grep`. |
+| more tools that I am forgetting right now |                                                                |
+
+You might have noticed, I don't use an IDE and only use the tools I need.
 
 ## Deployment
 

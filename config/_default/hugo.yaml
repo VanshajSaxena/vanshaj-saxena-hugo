@@ -17,4 +17,9 @@ outputs:
   home:
     - HTML
     - RSS
-    - JSON # necessary for search
+    - JSON
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
