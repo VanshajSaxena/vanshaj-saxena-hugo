@@ -7,7 +7,7 @@ showToc: true
 
 ## Why
 
-Printing is pretty common in educational institutions, so much so, that when I was I college we had to print hundreds of pages per subject per week. The process is not complex by any means but requires 3 different parties to communicate well.
+Printing is pretty common in educational institutions, so much so, that when I was in college we had to print hundreds of pages per subject per week. The process is not complex by any means but requires 3 different parties to communicate well.
 
 - **WhatsApp** - This is your relay, which was never meant to solve your printing needs.
 - **You (The Consumer)** - You want to print 3 documents, you want only the first 10 pages of the first document, not want only the first page of the second document and need the first two document in Black and White, but the last one in Color.
@@ -61,7 +61,7 @@ This architecture satisfies the current requirements while being scalable for th
 Now, that our architecture is ready, the dirty work starts, we now dive into code and implement the system in a series of steps.
 I chose the following two languages for the development:
 
-| Languege   | Scope                                                 | Rationale                                                                            |
+| Language   | Scope                                                 | Rationale                                                                            |
 | ---------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | TypeScript | Backend, Client App, Vendor App                       | Known for it's safety and it's powerful type system.                                 |
 | C#         | Printing Layer, Windows Print Spooler API integration | We will use this to create a printing layer that talks to Windows Print Spooler API. |
@@ -122,214 +122,23 @@ With just these dependencies installed, we can easily deploy a working prototype
 
 ### Development Flow
 
-The development of a system like this can be broken down into few quintessential steps:
+Well, the implementation details deserves a dedicated post, the development cycle of a system like this can be broken down into few quintessential steps:
 
-#### NestJS
+#### 1. Database Architecture
 
-##### Designing Database Schemas
+This phase is about designing the database schemas and entity relationships. Deciding how information is stored, organized, and retrieved so that the system remains fast and reliable as it scales.
 
-- Defining the entities the system will deal with, for a printing system these will typically be (**job**, **document**, **printer**, etc.).
-- This includes defining any relationships between them (the cardinality and the direction of relationships).
+#### 2. API Contracts
 
-<details>
-  <summary><strong>Click to show a code example</strong></summary>
+This is about defining interfaces and API schemas that would establish a clear contract between the clients and the server. I focus on designing APIs that scale well and don't need breaking changes as the system evolves.
 
-```ts
-import { Job } from "src/job/entities/job.entity";
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from "typeorm";
-import { DocumentStatus } from "../enum/document-status.enum";
+#### 3. Application Layer
 
-@Entity()
-export class Document {
-  @PrimaryGeneratedColumn()
-  id: number;
+This is where we build the core logic that solves the real problem. We usually define the controllers and the services that implement our API contract and business rules during this phase of the cycle. This keeps getting improved as the system evolves and requirements become more clear.
 
-  @Column({ length: 255 })
-  filename: string;
+#### 4. Decoupled Development
 
-  @Column()
-  key: string;
-
-  @Column({ type: "varchar", length: 255 })
-  contentType: string;
-
-  @Column("enum", { enum: DocumentStatus, default: DocumentStatus.CREATED })
-  status: DocumentStatus;
-
-  @OneToMany(() => Job, (job) => job.document)
-  jobs: Job[];
-
-  @CreateDateColumn({ type: "timestamptz" })
-  createdAt: Date;
-
-  @UpdateDateColumn({ type: "timestamptz" })
-  updatedAt: Date;
-
-  @DeleteDateColumn({ type: "timestamptz" })
-  deletedAt: Date;
-}
-```
-
-</details>
-
-##### Designing Controllers
-
-- To let the Client and the Vendor Applications talk to our service we need to expose our entities as resources through REST endpoints.
-- We create controllers for each resource that define the contract of our API and inject services that handles the exact business logic.
-
-<details>
-  <summary><strong>Click to show a code example</strong></summary>
-
-```ts
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseIntPipe,
-  Patch,
-  Post,
-} from "@nestjs/common";
-import { DocumentService } from "./document.service";
-import { CreateDocumentBatchRequestDto } from "./dto/create-document-batch-request.dto";
-import { CreateDocumentBatchResponseDto } from "./dto/create-document-batch-response.dto";
-import { UpdateDocumentRequestDto } from "./dto/update-document.dto";
-
-@Controller({ path: "documents", version: "1" })
-export class DocumentController {
-  constructor(private readonly documentService: DocumentService) {}
-
-  @Post()
-  async create(
-    @Body() createDocumentBatchDto: CreateDocumentBatchRequestDto,
-  ): Promise<CreateDocumentBatchResponseDto> {
-    return this.documentService.create(createDocumentBatchDto);
-  }
-
-  @Get()
-  async findAll() {
-    return this.documentService.findAll();
-  }
-
-  @Get(":id")
-  async findOne(@Param("id", ParseIntPipe) id: number) {
-    return this.documentService.findOne(id);
-  }
-
-  @Patch(":id")
-  async update(
-    @Param("id", ParseIntPipe) id: number,
-    @Body() updateDocumentRequestDto: UpdateDocumentRequestDto,
-  ) {
-    return this.documentService.update(id, updateDocumentRequestDto);
-  }
-
-  @Delete(":id")
-  async remove(@Param("id", ParseIntPipe) id: number) {
-    return this.documentService.remove(id);
-  }
-}
-```
-
-</details>
-
-##### Defining DTOs (Data Transfer Objects)
-
-- DTOs help separate the presentation layer from the business layer.
-- This is where our `class-validator` dependency comes handy. We can define the exact rules the DTOs has to validate against before it even touches our controller.
-
-<details>
-  <summary><strong>Click to show a code example</strong></summary>
-
-```ts
-import {
-  ArrayMinSize,
-  IsArray,
-  IsNotEmpty,
-  ValidateNested,
-} from "class-validator";
-import { CreateDocumentRequestDto } from "./create-document-request.dto";
-
-export class CreateDocumentBatchRequestDto {
-  @IsNotEmpty()
-  @IsArray()
-  @ArrayMinSize(1)
-  @ValidateNested({ each: true })
-  documents: CreateDocumentRequestDto[];
-}
-```
-
-</details>
-
-##### Building Services
-
-- Services are responsible for defining and enforcing business rules.
-- A typical service (or provider in NestJS terminology) needs to inject a TypeORM repository and perform actions on the entity object through the interface exposed by those repositories using data received from the DTOs.
-
-<details>
-  <summary><strong>Click to show a code example</strong></summary>
-
-```ts
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { ApplicationLogger } from "src/logger/application-logger.service";
-import { Repository } from "typeorm";
-import { CreateDocumentBatchRequestDto } from "./dto/create-document-batch-request.dto";
-import { CreateDocumentBatchResponseDto } from "./dto/create-document-batch-response.dto";
-import { CreateDocumentResponseDto } from "./dto/create-document-response.dto";
-import { Document } from "./entities/document.entity";
-
-@Injectable()
-export class DocumentService {
-  constructor(
-    @InjectRepository(Document)
-    private documentRepository: Repository<Document>,
-    private logger: ApplicationLogger,
-  ) {
-    this.logger.setContext(DocumentService.name);
-  }
-
-  async create(createDocumentDto: CreateDocumentBatchRequestDto) {
-    const draftIdMap = new Map<string, string>();
-    const newDocuments = createDocumentDto.documents.map((document) => {
-      const documentkey = this.getDocumentKey(document);
-      const newDocument = this.documentRepository.create(document);
-      newDocument.key = documentkey;
-      draftIdMap.set(newDocument.key, document.draftId);
-      return newDocument;
-    });
-    const saved = await this.documentRepository.save(newDocuments);
-    const documents = saved.map((savedDocument) => {
-      const draftId = draftIdMap.get(savedDocument.key);
-      if (!draftId) {
-        this.logger.error(
-          "Document creation failed due to in-memory mapping failure",
-        );
-        throw new InternalServerErrorException(
-          `Mapping failed for key: ${savedDocument.key}`,
-        );
-      }
-      return new CreateDocumentResponseDto({ ...savedDocument, draftId });
-    });
-    return new CreateDocumentBatchResponseDto({ documents });
-  }
-}
-```
-
-</details>
-
-#### React and Electron
-
-I realized this is already getting so long, I will be creating a separate posts on how I created the React and Electron application.
+Now, as we have the API contract, the frontends and the backend can now evolve independently, allowing for faster iterations and easier development cycles avoiding breaking changes (Although, that is not important until the project hits it's first milestone).
 
 ### Tools
 
