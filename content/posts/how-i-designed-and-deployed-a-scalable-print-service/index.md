@@ -50,11 +50,21 @@ These are some functional and non-functional requirements that I identified for 
 - The system should withstand high traffic even during peak hours (e.g., before exams).
 - The system should be cost-efficient to operate and maintain.
 
+For the first milestone of the system, I have decided to only support PDF printing. When this gets stable we can add support for other formats like images and word documents. This keeps the system simple and practical without introducing unnecessary complexity in the early stages of development.
+
 Below is the system architecture I designed to meet the above requirements:
 
 {{< inline-svg src="ps-system-design.svg" >}}
 
-This architecture satisfies the current requirements while being scalable for the future. If the need arise, we can introduce a high-speed caching layer or decompose the system into microservices as the system expands.
+<br>
+
+This system alone should be able to handle most of what we need. You might notice, there is not depiction of file processing queues or worker nodes, this is intentional.
+
+To handle the cost efficiency requirement, I wanted to offload any CPU intensive tasks to the client applications, this allows to save on server costs and also reduces the latency of the system. This comes with trade-offs, we need to ensure that the client applications are feature rich, have offline functionality (so the user can make edits even without a network, and sync changes when the network reconnects) and are capable enough to handle the processing tasks.
+
+We usually want this kind of behavior in a system that handles printing, since letting the server manipulate the documents after they have been uploaded and sent for printing can produce mismatched results deviating from the user's expectations. By offloading the processing to the client, we can ensure that the user has full control over how their documents are processed and printed, and they can see the results before they are sent for printing.
+
+Our architecture remains lean and simple, and our system only needs to orchestrate the flow of data between the clients and the printers, without needing to handle any of the processing tasks. Allowing us to keep our server costs low and while also reducing the latency of the system.
 
 ## Development Process
 
