@@ -6,12 +6,16 @@ draft: true
 
 Hello everyone 👋
 
-Wanted to share about the progress I have made on the project I am working on since I last posted.
+I'm excited to share some significant updates on my project since my last post!
 
-- Now the system has the ability to geographically locate the nearby printers.
-- Draft now get automatically saved for documents you never printed.
-- The checkout flow has been improved to be more intuitive and user-friendly.
-- Two new screens have been added to status tracking and viewing the order history.
+  • 𝗙𝗶𝗿𝘀𝘁, we now have the capability to 𝗴𝗲𝗼𝗴𝗿𝗮𝗽𝗵𝗶𝗰𝗮𝗹𝗹𝘆 𝗹𝗼𝗰𝗮𝘁𝗲 𝗻𝗲𝗮𝗿𝗯𝘆 𝗽𝗿𝗶𝗻𝘁𝗲𝗿𝘀, making it easier for users to find the most convenient options.
+  • 𝗦𝗲𝗰𝗼𝗻𝗱, drafts are now automatically saved for documents that you haven't printed yet. This ensures you never lose progress and makes the whole process smoother.
+  • 𝗧𝗵𝗶𝗿𝗱, I have enhanced the checkout flow to be more 𝗶𝗻𝘁𝘂𝗶𝘁𝗶𝘃𝗲 𝗮𝗻𝗱 𝘂𝘀𝗲𝗿-𝗳𝗿𝗶𝗲𝗻𝗱𝗹𝘆, creating a better experience for our users.
+  • 𝗟𝗮𝘀𝘁𝗹𝘆, I have added two new screens for 𝘀𝘁𝗮𝘁𝘂𝘀 𝘁𝗿𝗮𝗰𝗸𝗶𝗻𝗴 and 𝘃𝗶𝗲𝘄𝗶𝗻𝗴 𝗼𝗿𝗱𝗲𝗿 𝗵𝗶𝘀𝘁𝗼𝗿𝘆, allowing users to stay informed at every step of the process.
+
+I'd love you hear your thoughts on these updates and any suggestions you might have for further improvements.
+
+#ProjectUpdate #UserExperience #TechDevelopment #ProjectDevelopment #FeedbackWelcome
 
 ## Differentiators
 
