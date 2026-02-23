@@ -142,16 +142,17 @@ Now, as we have the API contract, the frontends and the backend can now evolve i
 
 ### Tools
 
-Here are some tools that I use daily during development that are worth mentioning, these incredibly hastens the process of development for me.
+These are some tools that I use daily and are worth mentioning, these are a huge time-saver:
 
-| Tool                                      | Description                                                    |
-| ----------------------------------------- | -------------------------------------------------------------- |
-| `git` + `lazygit`                         | `lazygit` is a git interface for the TUI.                      |
-| `fd`                                      | Incredibly fast file search.                                   |
-| `rg` (ripgrep)                            | An incredibly fast text search tool, a replacement for `grep`. |
-| more tools that I am forgetting right now |                                                                |
+| Tool           | Description                                                       |
+| -------------- | ----------------------------------------------------------------- |
+| `lazygit`      | `lazygit` is a git interface for the TUI.                         |
+| `fd`           | Incredibly fast file search.                                      |
+| `rg` (ripgrep) | An incredibly fast text search tool, a replacement for `grep`.    |
+| `zoxide`       | Rust based `cd` replacement. Helps navigating directories faster. |
+| `fzf`          | Fuzzy finder.                                                     |
 
-You might have noticed, I don't use an IDE and only use the tools I need.
+There are more which I am forgetting, but these are the most useful.
 
 ## Deployment
 
