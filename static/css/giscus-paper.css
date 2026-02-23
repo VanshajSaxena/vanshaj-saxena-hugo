@@ -1,0 +1,35 @@
+/* Light theme */
+:root {
+  --color-canvas-default: rgb(255, 255, 255);
+  --color-canvas-subtle: rgb(245, 245, 245);
+  --color-border-default: rgb(238, 238, 238);
+
+  --color-fg-default: rgb(30, 30, 30);
+  --color-fg-muted: rgb(108, 108, 108);
+
+  --color-accent-fg: rgb(31, 31, 31);
+  --color-accent-emphasis: rgb(31, 31, 31);
+
+  --color-btn-primary-bg: rgb(31, 31, 31);
+  --color-btn-primary-text: #ffffff;
+
+  --color-neutral-muted: rgb(214, 214, 214);
+}
+
+/* Dark theme */
+:root[data-theme="dark"] {
+  --color-canvas-default: rgb(29, 30, 32);
+  --color-canvas-subtle: rgb(46, 46, 51);
+  --color-border-default: rgb(51, 51, 51);
+
+  --color-fg-default: rgb(218, 218, 219);
+  --color-fg-muted: rgb(155, 156, 157);
+
+  --color-accent-fg: rgb(196, 196, 197);
+  --color-accent-emphasis: rgb(196, 196, 197);
+
+  --color-btn-primary-bg: rgb(196, 196, 197);
+  --color-btn-primary-text: rgb(29, 30, 32);
+
+  --color-neutral-muted: rgb(65, 66, 68);
+}

@@ -12,7 +12,7 @@
     data-emit-metadata="0"
     data-input-position="bottom"
     data-lang="en"
-    data-theme="https://vanshajsaxena.com/css/giscus-light.css"
+    data-theme="https://dev--vanshaj-saxena.netlify.app/css/giscus-paper.css"
     crossorigin="anonymous"
     async
   ></script>
@@ -21,17 +21,15 @@
     function getGiscusTheme() {
       const htmlTheme = document.documentElement.getAttribute("data-theme");
 
-      const base = "https://vanshajsaxena.com/css/";
-
-      if (htmlTheme === "dark") return base + "giscus-dark.css";
-      if (htmlTheme === "light") return base + "giscus-light.css";
+      if (htmlTheme === "dark") return "dark";
+      if (htmlTheme === "light") return "light";
 
       const savedTheme = localStorage.getItem("pref-theme");
-      if (savedTheme === "dark") return base + "giscus-dark.css";
+      if (savedTheme === "dark") return "dark";
 
       return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? base + "giscus-dark.css"
-        : base + "giscus-light.css";
+        ? "dark"
+        : "light";
     }
 
     function updateGiscusTheme() {
@@ -39,7 +37,14 @@
       if (!iframe) return;
 
       iframe.contentWindow.postMessage(
-        { giscus: { setConfig: { theme: getGiscusTheme() } } },
+        {
+          giscus: {
+            setConfig: {
+              theme:
+                "https://dev--vanshaj-saxena.netlify.app/css/giscus-paper.css",
+            },
+          },
+        },
         "https://giscus.app",
       );
     }
