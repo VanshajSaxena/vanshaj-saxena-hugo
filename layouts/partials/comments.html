@@ -12,7 +12,7 @@
     data-emit-metadata="0"
     data-input-position="bottom"
     data-lang="en"
-    data-theme="https://dev--vanshaj-saxena.netlify.app/css/giscus-paper.css"
+    data-theme="https://dev--vanshaj-saxena.netlify.app/css/giscus-dark.css"
     crossorigin="anonymous"
     async
   ></script>
@@ -21,15 +21,17 @@
     function getGiscusTheme() {
       const htmlTheme = document.documentElement.getAttribute("data-theme");
 
-      if (htmlTheme === "dark") return "dark";
-      if (htmlTheme === "light") return "light";
+      const base = "https://dev--vanshaj-saxena.netlify.app/css/";
+
+      if (htmlTheme === "dark") return base + "giscus-dark.css";
+      if (htmlTheme === "light") return base + "giscus-light.css";
 
       const savedTheme = localStorage.getItem("pref-theme");
-      if (savedTheme === "dark") return "dark";
+      if (savedTheme === "dark") return base + "giscus-dark.css";
 
       return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+        ? base + "giscus-dark.css"
+        : base + "giscus-light.css";
     }
 
     function updateGiscusTheme() {
@@ -37,14 +39,7 @@
       if (!iframe) return;
 
       iframe.contentWindow.postMessage(
-        {
-          giscus: {
-            setConfig: {
-              theme:
-                "https://dev--vanshaj-saxena.netlify.app/css/giscus-paper.css",
-            },
-          },
-        },
+        { giscus: { setConfig: { theme: getGiscusTheme() } } },
         "https://giscus.app",
       );
     }
