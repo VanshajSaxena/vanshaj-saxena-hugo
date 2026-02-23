@@ -147,7 +147,7 @@ These are some tools that I use daily and are worth mentioning, these are a huge
 | Tool           | Description                                                       |
 | -------------- | ----------------------------------------------------------------- |
 | `lazygit`      | `lazygit` is a git interface for the TUI.                         |
-| `fd`           | Incredibly fast file search.                                      |
+| `fd`           | Incredibly fast file search. Replacement for `find`.              |
 | `rg` (ripgrep) | An incredibly fast text search tool, a replacement for `grep`.    |
 | `zoxide`       | Rust based `cd` replacement. Helps navigating directories faster. |
 | `fzf`          | Fuzzy finder.                                                     |
@@ -156,7 +156,9 @@ There are more which I am forgetting, but these are the most useful.
 
 ## Deployment
 
-Before we deploy our application on the cloud we will first containerize our application using **Docker** to have a consistent runtime environment everytime we run our application. This reduces surprises due to the differences in the environment our application will run in.
+Before we deploy our application on the cloud we will first containerize our application using **Docker** to have a consistent runtime environment every time we run our application. This reduces surprises due to the differences in the environment our application will run in.
+
+> **Containerization** essentially packages the application code, its dependencies, and the runtime into a single image that can be used to create containers that guarantees consistent behavior and execution across a variety of environments (Linux, MacOS, CI/CD, production).
 
 Here, I am using the **node:22-bookwork-slim** which keeps the our container image lightweight.
 
@@ -196,19 +198,19 @@ EXPOSE 8080
 CMD ["node", "dist/main"]
 ```
 
-Now, we can build:
+Now, we can build our image:
 
 ```sh
 $ docker build -t printit-cloud .
 ```
 
-And, run:
+And, run it as a container (docker will automatically create a container from the specified image):
 
 ```sh
 $ docker run --env-file .env.development printit-cloud
 ```
 
-With this, the docker image can easily be used to run the application on any cloud provider.
+We can publish this image to a container registry like **Docker Hub** or **AWS ECR** and then deploy it on a cloud platform like **AWS ECS** or **AWS EKS**.
 
 ## Conclusion
 
