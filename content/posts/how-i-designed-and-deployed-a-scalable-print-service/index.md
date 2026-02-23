@@ -58,7 +58,7 @@ Below is the system architecture I designed to meet the above requirements:
 
 <br>
 
-This system alone should be able to handle most of what we need. You might notice, there is not depiction of file processing queues or worker nodes, this is intentional.
+This system alone should be able to handle most of what we need. You might notice, there is no depiction of file processing queues or worker nodes, this is intentional.
 
 To handle the cost efficiency requirement, I wanted to offload any CPU intensive tasks to the client applications, this allows to save on server costs and also reduces the latency of the system. This comes with trade-offs, we need to ensure that the client applications are feature rich, have offline functionality (so the user can make edits even without a network, and sync changes when the network reconnects) and are capable enough to handle the processing tasks.
 
