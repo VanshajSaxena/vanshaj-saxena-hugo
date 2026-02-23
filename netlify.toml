@@ -12,3 +12,8 @@ skip_node_bundling = true
 
 [context.production]
 environment = { HUGO_ENABLEGITINFO = "true" }
+
+[[headers]]
+for = "/css/giscus-*.css"
+[headers.values]
+Access-Control-Allow-Origin = "https://giscus.app"

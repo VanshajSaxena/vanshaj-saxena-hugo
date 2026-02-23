@@ -1,0 +1,30 @@
+:root {
+  /* Backgrounds */
+  --color-canvas-default: rgb(29, 30, 32); /* --theme */
+  --color-canvas-subtle: rgb(46, 46, 51); /* --entry */
+  --color-neutral-muted: rgb(51, 51, 51); /* --border */
+
+  /* Borders */
+  --color-border-default: rgb(51, 51, 51); /* --border */
+
+  /* Text */
+  --color-fg-default: rgb(196, 196, 197); /* --content */
+  --color-fg-muted: rgb(155, 156, 157); /* --secondary */
+  --color-fg-subtle: rgb(155, 156, 157);
+
+  /* Accent / buttons */
+  --color-accent-fg: rgb(218, 218, 219); /* --primary */
+  --color-accent-emphasis: rgb(218, 218, 219);
+  --color-btn-primary-bg: rgb(218, 218, 219);
+  --color-btn-primary-text: rgb(29, 30, 32);
+  --color-btn-primary-border: rgb(218, 218, 219);
+
+  /* Cards */
+  --color-card-bg: rgb(46, 46, 51);
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+}
