@@ -21,7 +21,8 @@
     function getGiscusTheme() {
       const htmlTheme = document.documentElement.getAttribute("data-theme");
 
-      const base = "https://dev--vanshaj-saxena.netlify.app/css/";
+      const base =
+        '{{ "css/" | absURL | default "https://vanshajsaxena.com/css/" }}';
 
       if (htmlTheme === "dark") return base + "giscus-dark.css";
       if (htmlTheme === "light") return base + "giscus-light.css";

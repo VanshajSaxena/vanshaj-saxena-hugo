@@ -1,25 +1,20 @@
 :root {
-  /* Backgrounds */
-  --color-canvas-default: rgb(255, 255, 255); /* --theme */
-  --color-canvas-subtle: rgb(255, 255, 255); /* --entry */
-  --color-neutral-muted: rgb(238, 238, 238); /* --border */
+  --color-canvas-default: rgb(255, 255, 255);
+  --color-canvas-subtle: rgb(255, 255, 255);
+  --color-neutral-muted: rgb(238, 238, 238);
 
-  /* Borders */
-  --color-border-default: rgb(238, 238, 238); /* --border */
+  --color-border-default: rgb(238, 238, 238);
 
-  /* Text */
-  --color-fg-default: rgb(31, 31, 31); /* --content */
-  --color-fg-muted: rgb(108, 108, 108); /* --secondary */
+  --color-fg-default: rgb(31, 31, 31);
+  --color-fg-muted: rgb(108, 108, 108);
   --color-fg-subtle: rgb(108, 108, 108);
 
-  /* Accent / buttons */
-  --color-accent-fg: rgb(30, 30, 30); /* --primary */
+  --color-accent-fg: rgb(30, 30, 30);
   --color-accent-emphasis: rgb(30, 30, 30);
   --color-btn-primary-bg: rgb(30, 30, 30);
   --color-btn-primary-text: rgb(255, 255, 255);
   --color-btn-primary-border: rgb(30, 30, 30);
 
-  /* Cards */
   --color-card-bg: rgb(255, 255, 255);
 }
 
