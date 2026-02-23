@@ -214,4 +214,6 @@ We can publish this image to a container registry like **Docker Hub** or **AWS E
 
 ## Conclusion
 
-This is yet to complete and by far perfect. I aim to improve this gradually as the requirements of the system becomes more clear and the system expands. I will also be discussing the architecture of the two other applications we left in upcoming future posts.
+This is a start. My goal is to iteratively refine and evolve the system as it scales and as the requirements becomes more clear. I’ll continue sharing updates on the development and deployment process as the project progresses.
+
+I will be discussing the architecture of the two other applications we left, in the upcoming posts.
