@@ -8,12 +8,10 @@ Hello everyone 👋
 
 Wanted to share about the progress I have made on the project I am working on since I last posted.
 
-- Now the app has the ability to geographically locate the nearby printers.
-- You can now save drafts for documents you want to print later.
+- Now the system has the ability to geographically locate the nearby printers.
+- Draft now get automatically saved for documents you never printed.
 - The checkout flow has been improved to be more intuitive and user-friendly.
-- There has been an addition of a new screen to show what you previously printed and the status of those print jobs.
-
-For the people who are interested, I have also written a blog describing a high level
+- Two new screens have been added to status tracking and viewing the order history.
 
 ## Differentiators
 
@@ -22,3 +20,7 @@ For the people who are interested, I have also written a blog describing a high 
 - Image editing
 - Automated file bundling
 - Order tracking
+
+I have also written a blog detailing a high level overview of the system architecture.
+
+Read it here: [How I Designed and Deployed a Scalable, Cost Efficient Print Service Architecture](https://dev--vanshaj-saxena.netlify.app/posts/how-i-designed-and-deployed-a-scalable-print-service/)
