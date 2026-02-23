@@ -62,9 +62,11 @@ This system alone should be able to handle most of what we need. You might notic
 
 To handle the cost efficiency requirement, I wanted to offload any CPU intensive tasks to the client applications, this allows to save on server costs and also reduces the latency of the system. This comes with trade-offs, we need to ensure that the client applications are feature rich, have offline functionality (so the user can make edits even without a network, and sync changes when the network reconnects) and are capable enough to handle the processing tasks.
 
-We usually want this kind of behavior in a system that handles printing, since letting the server manipulate the documents after they have been uploaded and sent for printing can produce mismatched results deviating from the user's expectations. By offloading the processing to the client, we can ensure that the user has full control over how their documents are processed and printed, and they can see the results before they are sent for printing.
+We usually want this kind of behavior in a system that handles printing, since letting the server manipulate the documents after they have been uploaded and sent for printing can produce mismatched results, deviating from the user's expectations. By offloading the processing to the client, we can ensure that the user has full control over how their documents are processed and printed, and they can see the results before they are sent for printing.
 
-Our architecture remains lean and simple, and our system only needs to orchestrate the flow of data between the clients and the printers, without needing to handle any of the processing tasks. Allowing us to keep our server costs low and while also reducing the latency of the system.
+Our architecture remains lean and simple, and our system only needs to orchestrate the flow of data between the clients and the printers.
+
+I have depicted a single instance of NestJS application, this is fine until we hit a real bottleneck using a single instance. As the demand surges, we can quickly spin up more instances of our application and put it behind a load balancer, this is possible because our application is stateless and we don't keep any stateful data on an instance itself. There are also auto-scaling strategies that vary across the cloud providers.
 
 ## Development Process
 
