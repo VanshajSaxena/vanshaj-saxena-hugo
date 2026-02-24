@@ -10,14 +10,7 @@ weight: 97
 
 My first team project was **CareNote**.
 
-It was in intense journey to first come up
-with a problem that has some meaning and is relevant to at least some people.
-Then develop the actual solution that can solve _this real problem in the real
-world_.
-
-Before this I had always wrote small programs that only served me, mainly in
-configuring my development experience in [Neovim]({{<relref
-"projects/neovim">}}), which is a small project in itself maintained by me.
+It was intense journey to first come up with a problem that has some meaning and is relevant to at least some people. Then develop the actual solution that can solve _this real problem in the real world_.
 
 Here are some of the screenshots of the **prototype** which I with my teammates
 designed.
