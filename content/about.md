@@ -14,7 +14,7 @@ I’m a backend, frontend, and UI/UX developer who builds software that solves p
 I build and scale products end-to-end. You'll catch me debugging production in
 the terminal right before a meeting ;)
 
-My focus is simple: solve problems, ship fast, and make it reliable.
+My focus is simple: solve problems, architect well early, and make it reliable iteratively.
 
 I like approaching to problem with all non-conventional ways of solution you
 might _not_ think of.
