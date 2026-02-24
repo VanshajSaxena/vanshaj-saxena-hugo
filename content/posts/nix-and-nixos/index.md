@@ -1,9 +1,8 @@
 ---
-title: "Nix and NixOS"
-#date: 2024-02-10T03:36:02+05:30
+title: "How I use Nix and NixOS to maintain a purely functional development environment."
+date: 2025-03-10T03:36:02+05:30
 draft: false
 showtoc: false
-weight: 96
 ---
 
 > [**Source Code**](https://github.com/VanshajSaxena/nixos-config)
