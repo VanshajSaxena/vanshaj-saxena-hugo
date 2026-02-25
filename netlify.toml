@@ -3,10 +3,10 @@ publish = "public"
 command = "hugo --gc --minify --environment $HUGO_ENV"
 
 [context.deploy-preview]
-command = "echo 'BUILD CONTEXT IS: deploy-preview' && hugo --gc --minify -b $DEPLOY_PRIME_URL"
+command = "echo 'BUILD CONTEXT IS: deploy-preview' && echo 'HUGO_ENV IS:' $HUGO_ENV && hugo --gc --minify -b $DEPLOY_PRIME_URL"
 
 [context.branch-deploy]
-command = "echo 'BUILD CONTEXT IS: branch-preview' && hugo --gc --minify -b $DEPLOY_PRIME_URL"
+command = "echo 'BUILD CONTEXT IS: branch-preview' && echo 'HUGO_ENV IS:' $HUGO_ENV && hugo --gc --minify -b $DEPLOY_PRIME_URL"
 
 [build.environment]
 HUGO_VERSION = "0.155.3"
