@@ -27,4 +27,4 @@ I'd love you hear your thoughts on these updates and any suggestions you might h
 
 I have also written a blog detailing a high level overview of the system architecture.
 
-Read it here: [How I Designed and Deployed a Scalable, Cost Efficient Print Service Architecture](https://dev--vanshaj-saxena.netlify.app/posts/how-i-designed-and-deployed-a-scalable-print-service/)
+Read it here: [How I Designed and Deployed a Scalable, Cost Efficient Print Service Architecture](https://vanshajsaxena.com/posts/how-i-designed-and-deployed-a-scalable-print-service/)
