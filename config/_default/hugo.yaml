@@ -23,7 +23,3 @@ markup:
   goldmark:
     renderer:
       unsafe: true
-
-services:
-  googleAnalytics:
-    id: G-MVS498T48N
