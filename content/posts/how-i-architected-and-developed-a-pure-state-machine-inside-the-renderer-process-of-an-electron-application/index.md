@@ -5,9 +5,9 @@ draft: false
 showToc: true
 ---
 
-### tldr;
+### TLDR;
 
-> It's this, if you understand this, you don't need to read the rest of the article. But if you want to understand this, read on.
+> This is it, if you know what this is, you don't need to read furthermore. Read if you wish to get insight.
 
 ```ts
 import { fetchClient } from "@api/client";
@@ -50,6 +50,17 @@ export const useTransactionStore = create<TransactionStore>()(
 
 ## Why
 
+While building [**Printit,**]({{< relref "projects/printit" >}}) I was faced with some challenges that I never faced before:
+
+- **Managing state of printers, queues, orders and jobs** that are highly coupled with environments like printers and network requests which are external to my system.
+- **Reliably knowing if a piece of paper came out of the printer or not**, only then I can tell if an order is complete, printers are notoriously difficult to get updates from, this is not a small problem to solve (although, I did it eventually).
+- Every printer can behave differently and can **showcase endlessly unique state transitions**. Managing these states and turning these transitions into system events.
+- All this needs to be showcased to the user in real time with **high accuracy and reliability**.
+
 ## Constraints
 
+Windows operating system /
+
 ## Architecture and Design
+
+{{< inline-svg src="electron-architecture.svg" >}}
